@@ -21,3 +21,10 @@ monip() {
 	cut -d ':' -f 2 | \
 	cut -d '<' -f 1 )
 }
+
+stun() {
+    IP=$(stun-client -v stun.voiparound.com 2>&1 1>/dev/null | \
+	grep MappedAddress | \
+	sed -e 's/.*MappedAddress = //' -e 's/:.*//' | \
+	uniq)
+}
