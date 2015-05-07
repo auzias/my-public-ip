@@ -1,10 +1,12 @@
 #!/bin/bash
 export IP=""
+COLOR=''
 
 source functions.sh
 
-for cm in ipinfo shtuff myip monip stun
+for cm in $ALL
 do
 	time $cm
-	echo -e "$cm:\t $IP"
+        [[ -n "$IP" ]] && COLOR='32' || COLOR='31'
+	echo -e "\033[1;${COLOR}m$cm\033[0m:\t $IP"
 done
